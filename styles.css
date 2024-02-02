@@ -1,0 +1,50 @@
+
+.master {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+
+}
+
+.button-container {
+    margin: 10px;
+}
+
+.grid {
+    display: flex;
+    flex-direction: column;
+
+    margin: 0px;
+    padding: 10px;
+    border-radius: 12px;
+    background-color:rgb(225, 232, 255);
+}
+
+.grid-top {
+    display: flex;
+
+    flex: 1;
+    margin: 0px;
+    padding: 0px;
+}
+
+.grid-bottom {
+    display: flex;
+
+    flex: 1;
+    margin: 0px;
+    padding: 0px;
+}
+
+.image-container {
+
+    flex: 1;
+    height: 200px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
