@@ -1,11 +1,7 @@
 /* --------------------------------------------------------*/
 /*                  SANDBOX ENVIRONMENT                    */
-        console.log("Welcome to the shitshow...");
+console.log("Welcome to the shitshow...");
 /* --------------------------------------------------------*/
-
-
-//-----------------------------------------------------------------------------------
-
 
 
 let createButton = document.querySelector('.create-button');
@@ -19,12 +15,6 @@ let dragon = document.createElement('img');
 let pheonix = document.createElement('img');
 let cherry = document.createElement('img');
 let synergy = document.createElement('img');
-let click = document.createElement('audio');
-click.src = './audio/click.mp3';
-let hover = document.createElement('audio');
-hover.src = './audio/hover.mp3';
-let swipe = document.createElement('audio');
-swipe.src = './audio/swipe.mp3';
 
 dragon.setAttribute('src', './images/dragonfire.png');
 dragon.style.height = '180px';
@@ -64,44 +54,55 @@ stopButton.addEventListener('click', e => {
     cherry.style.visibility = 'hidden';
     synergy.style.visibility = 'hidden';
     console.log("Images removed");
+    console.clear();
 });
-
 
 createButton.addEventListener('click', e => {
 
+    let swipe = document.createElement('audio');
+    swipe.src = './audio/swipe.mp3';
     swipe.play();
-    animateImage(dragon, 180);
-    animateImage(pheonix, 180);
-    animateImage(cherry, 180);
-    animateImage(synergy, 180);
+    try {
+        animateImage(dragon, 180);
+        animateImage(pheonix, 180);
+        animateImage(cherry, 180);
+        animateImage(synergy, 180);
+    } catch (error) {
+        console.log(error.message);
+    }
 });
 
-
 for(let imageElement of imageContainer) {
-    imageElement.firstChild.addEventListener('mouseover', async e => {
+    imageElement.firstChild.addEventListener('mouseenter', async e => {
 
+        let hover = document.createElement('audio');
+        hover.src = './audio/hover.mp3';
+        hover.play();
         for (let i = 0; i < 15; i++) {
             await sleep(5);
-            hover.play();
             e.target.style.height = convertToNumber(e.target.style.height) + 1 + 'px';
             e.target.style.width = convertToNumber(e.target.style.width) + 1 + 'px';
         }
     });
-    imageElement.firstChild.addEventListener('mouseout', e => {
 
-        e.target.style.height = '180px';
-        e.target.style.width = '180px';
+    imageElement.firstChild.addEventListener('mouseleave', e => {
+
+            e.target.style.height = '180px';
+            e.target.style.width = '180px';
     });
     imageElement.firstChild.addEventListener('click', e => {
+        let click = document.createElement('audio');
+        click.src = './audio/click.mp3';
         click.play();
         animateImage(e.target, 180);
     });
 }
 
-
-
-
 async function animateImage(element = new HTMLImageElement(), size) {
+
+    if(size === null || size === undefined) {
+        throw new Error('Size is undefined');
+    }
 
     console.log(`${element.alt}: ANIMATION START`);
     element.style.visibility = 'visible';
@@ -176,81 +177,14 @@ async function animateImage(element = new HTMLImageElement(), size) {
     }
 }
   
-
 function sleep(ms) {
     return new Promise(resolve => 
         setTimeout(resolve, ms));
 }
-
 
 function convertToNumber(string = 'default'){
         
     string = string.replace('px', '');
     return +string;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
